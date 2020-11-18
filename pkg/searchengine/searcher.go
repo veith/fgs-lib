@@ -3,7 +3,7 @@ package searchengine
 import (
 	"github.com/blevesearch/bleve"
 	"github.com/spf13/viper"
-	"github.com/veith/furoc-gen-server/pkg/common/types"
+	"github.com/veith/fgs-lib/pkg/types"
 
 	"os"
 	"strings"
