@@ -32,7 +32,7 @@ func CheckPasswordHash(password, hash string) bool {
 }
 
 // create a jwt token based on user profile
-func IssueJWT(user *Profile) string {
+func CreateJWT(user *Profile) string {
 	bytes, err := ioutil.ReadFile(viper.GetString("keys.private"))
 	if err != nil {
 		log.Fatal("Error reading private key")
