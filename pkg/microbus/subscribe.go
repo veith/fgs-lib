@@ -1,6 +1,9 @@
 package microbus
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/spf13/viper"
+)
 
 func (eb *EventBus) Subscribe(topic string, ch DataChannel) {
 	eb.rm.Lock()
@@ -13,8 +16,9 @@ func (eb *EventBus) Subscribe(topic string, ch DataChannel) {
 }
 
 func logEvent(data DataEvent) {
-	// todo add config to disable logging
-	fmt.Printf("Topic: %s;\n", data.Topic)
+	if viper.GetBool("messaging.log"){
+		fmt.Printf("Topic: %s;\n", data.Topic)
+	}
 }
 
 func RegisterSubscriptionsOnBus(subscriptionList map[string]func(event DataEvent), bus *EventBus) {
