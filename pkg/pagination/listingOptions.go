@@ -14,7 +14,7 @@ func GetListingOptions(generalRequest interface{}) types.ListingOptions {
 		OrderBy:    "",
 		PageSize:   DefaultPageSize,
 		Page:       0,
-		PageCursor: "0",
+		PageCursor: "",
 		Q:          "",
 		View:       "",
 	}
