@@ -18,7 +18,7 @@ require (
 	github.com/remyoudompheng/bigfft v0.0.0-20200410134404-eec4a21b6bb0 // indirect
 	github.com/spf13/viper v1.7.1
 	github.com/tecbot/gorocksdb v0.0.0-20191217155057-f0fad39f321c // indirect
-	github.com/theNorstroem/FuroBaseSpecs v1.12.0
+	github.com/theNorstroem/FuroBaseSpecs v1.14.1
 	github.com/veith/goJWT v1.2.0
 	golang.org/x/crypto v0.0.0-20190605123033-f99c8df09eb5
 	golang.org/x/net v0.0.0-20200301022130-244492dfa37a

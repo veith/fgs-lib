@@ -8,7 +8,7 @@ import (
 var DefaultPageSize = uint32(23) //yes, as string
 
 func GetListingOptions(generalRequest interface{}) types.ListingOptions {
-	defaultOptioins := types.ListingOptions{
+	defaultOptions := types.ListingOptions{
 		Fields:     "",
 		Filter:     "",
 		OrderBy:    "",
@@ -21,57 +21,57 @@ func GetListingOptions(generalRequest interface{}) types.ListingOptions {
 
 	fld, hasFields := generalRequest.(Fields)
 	if hasFields {
-		defaultOptioins.Fields = fld.GetFields()
+		defaultOptions.Fields = fld.GetFields()
 	}
 
 	f, hasFilter := generalRequest.(Filter)
 	if hasFilter {
-		defaultOptioins.Filter = f.GetFilter()
+		defaultOptions.Filter = f.GetFilter()
 	}
 
 	ob, hasOrderBy := generalRequest.(OrderBy)
 	if hasOrderBy {
-		defaultOptioins.OrderBy = ob.GetOrderBy()
+		defaultOptions.OrderBy = ob.GetOrderBy()
 	}
 
 	ps, hasPageSize := generalRequest.(PageSize)
 	if hasPageSize {
 		maxPageSize := viper.GetUint32("modules.all.max_items_per_page")
 
-		defaultOptioins.PageSize = ps.GetPageSize()
+		defaultOptions.PageSize = ps.GetPageSize()
 
-		requestedPageSize := defaultOptioins.PageSize
+		requestedPageSize := defaultOptions.PageSize
 		// use default on error
 		if requestedPageSize == 0 {
-			defaultOptioins.PageSize = DefaultPageSize
+			defaultOptions.PageSize = DefaultPageSize
 		}
 		// set to max on exeeded values
 		if requestedPageSize > maxPageSize {
-			defaultOptioins.PageSize = maxPageSize
+			defaultOptions.PageSize = maxPageSize
 		}
 	}
 
 	p, hasPage := generalRequest.(Page)
 	if hasPage {
-		defaultOptioins.Page = p.GetPage()
+		defaultOptions.Page = p.GetPage()
 	}
 
 	pc, hasPageCursor := generalRequest.(PageCursor)
 	if hasPageCursor {
-		defaultOptioins.PageCursor = pc.GetPageCursor()
+		defaultOptions.PageCursor = pc.GetPageCursor()
 	}
 
 	q, hasQ := generalRequest.(Q)
 	if hasQ {
-		defaultOptioins.Q = q.GetQ()
+		defaultOptions.Q = q.GetQ()
 	}
 
 	v, hasView := generalRequest.(View)
 	if hasView {
-		defaultOptioins.View = v.GetView()
+		defaultOptions.View = v.GetView()
 	}
 
-	return defaultOptioins
+	return defaultOptions
 }
 
 type Fields interface {
