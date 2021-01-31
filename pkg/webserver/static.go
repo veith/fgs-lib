@@ -19,7 +19,7 @@ func Start(publicDir http.FileSystem) {
 	target, _ := url.Parse(viper.GetString("server.transcoder.addr"))
 	if target == nil {
 		// no host given
-		target, _ = url.Parse("http://localhost" + viper.GetString("server.transcoder.addr"))
+		target, _ = url.Parse("http://" + viper.GetString("server.transcoder.addr"))
 	}
 	proxy := httputil.NewSingleHostReverseProxy(target)
 	http.HandleFunc("/api/", stripApiFromUrl(proxy))
