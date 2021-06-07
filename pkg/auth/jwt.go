@@ -44,7 +44,7 @@ func CreateJWT(user *Profile) string {
 	}
 
 	claims := jws.Claims{}
-	claims.Set("rol", "user")
+	claims.Set("roles", user.Roles)
 	claims.SetIssuer(viper.GetString("server.jwt.issuer"))
 	claims.SetSubject(user.Username)
 	now := time.Now()
