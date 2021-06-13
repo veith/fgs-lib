@@ -14,6 +14,7 @@ import (
 // user profile for internal use only
 type Profile struct {
 	Username string   `json:"username,omitempty"`
+	Subject  string   `json:"subject,omitempty"`
 	Pwhash   string   `json:"pwhash,omitempty"`
 	Roles    []string `json:"roles,omitempty"`
 }
@@ -46,7 +47,8 @@ func CreateJWT(user *Profile) string {
 	claims := jws.Claims{}
 	claims.Set("roles", user.Roles)
 	claims.SetIssuer(viper.GetString("server.jwt.issuer"))
-	claims.SetSubject(user.Username)
+	claims.SetSubject(user.Subject)
+	claims.Set("uname", user.Username)
 	now := time.Now()
 	claims.SetIssuedAt(now)
 	claims.SetExpiration(now.Add(time.Second * viper.GetDuration("server.jwt.expiry_duration_in_s")))

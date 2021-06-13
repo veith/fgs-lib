@@ -43,10 +43,17 @@ func GetClaimsFromContext(ctx context.Context) (token Claims, ok bool) {
 	return
 }
 
-// get the subject (user) from auth context
+// get the subject (user id) from auth context
 func GetSubjectFromContext(ctx context.Context) string {
 	token, _ := GetClaimsFromContext(ctx)
 	username := token["sub"].(string)
+	return username
+}
+
+// get the username from auth context
+func GetUsernameFromContext(ctx context.Context) string {
+	token, _ := GetClaimsFromContext(ctx)
+	username := token["uname"].(string)
 	return username
 }
 
