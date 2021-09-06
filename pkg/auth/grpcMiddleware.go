@@ -85,7 +85,7 @@ func authTokenFromMD(ctx context.Context, expectedScheme string) (string, error)
 	//alle cookies
 	cookies := strings.Split(cookie, "; ")
 	for _, element := range cookies {
-		if len(element) > 0 && element[0:13] == "Authorization" {
+		if len(element) > 0 && strings.HasPrefix(element,"Authorization") {
 			val = element[14:len(element)]
 			break
 		}
